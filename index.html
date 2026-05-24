@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoJi | Your Family's Fashion Destination</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#0D0D0F',
+            brandCard: '#16161A',
+            goldAccent: '#D4AF37',
+            goldLight: '#F3E5AB'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .hero-slide { transition: opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1); }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #0D0D0F; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #26262B; border-radius: 10px; }
+  </style>
+</head>
+<body class="bg-brandDark text-gray-100 antialiased custom-scrollbar">
+
+  <nav class="w-full py-4 px-6 md:px-12 flex justify-between items-center bg-brandDark/90 backdrop-blur-md sticky top-0 z-50 border-b border-white/5">
+    <div class="text-2xl tracking-[0.2em] font-serif font-bold">
+      <span class="text-white">Lo</span><span class="text-goldAccent">Ji</span>
+      <span class="block text-[7px] uppercase tracking-[0.5em] text-gray-400 font-sans font-normal mt-0.5">Footwear & Apparel</span>
+    </div>
+    
+    <div class="hidden lg:flex space-x-8 text-[11px] font-medium uppercase tracking-[0.2em] text-gray-400">
+      <a href="#home" class="hover:text-goldAccent transition-colors">Home</a>
+      <a href="#creed" class="hover:text-goldAccent transition-colors">Our Creed</a>
+      <a href="#departments" class="hover:text-goldAccent transition-colors">Departments</a>
+      <a href="#counter" class="hover:text-goldAccent transition-colors">Shoe Counter</a>
+      <a href="#visit" class="hover:text-goldAccent transition-colors">Visit Us</a>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <a href="tel:+919411300440" class="text-xs tracking-wider text-gray-300 hover:text-goldAccent transition hidden sm:inline-block font-semibold">
+        CALL: +91 94113 00440
+      </a>
+      <a href="https://wa.me/919411300440" target="_blank" class="bg-goldAccent hover:bg-white text-black font-bold text-[10px] uppercase tracking-widest px-5 py-3 rounded transition-all duration-300">
+        WhatsApp Concierge
+      </a>
+    </div>
+  </nav>
+
+  <header id="home" class="relative min-h-[85vh] flex items-center justify-start px-6 md:px-16 overflow-hidden bg-black">
+    
+    <div class="absolute inset-0 z-0">
+      <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-100" 
+           style="background-image: linear-gradient(to right, rgba(13,13,15,0.95) 25%, rgba(13,13,15,0.4) 100%), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1600');">
+      </div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" 
+           style="background-image: linear-gradient(to right, rgba(13,13,15,0.95) 25%, rgba(13,13,15,0.4) 100%), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=1600');">
+      </div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center opacity-0" 
+           style="background-image: linear-gradient(to right, rgba(13,13,15,0.95) 25%, rgba(13,13,15,0.4) 100%), url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1600');">
+      </div>
+    </div>
+
+    <div class="max-w-3xl w-full relative z-10 space-y-6 text-white">
+      <div class="flex items-center space-x-3">
+        <span class="text-goldAccent tracking-[0.4em] font-bold text-[10px] uppercase">Premium Retail Showroom</span>
+        <div class="h-[1px] w-12 bg-goldAccent"></div>
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-serif tracking-tight leading-[1.1]">
+        Your Family's <br>
+        <span class="text-goldAccent italic font-normal">Fashion Destination.</span>
+      </h1>
+      
+      <p class="text-gray-400 text-xs md:text-base max-w-lg leading-relaxed font-light tracking-wide">
+        Step inside an elevated multi-category retail environment. Discover carefully structured apparel lines and high-performance footwear engineered for the modern family.
+      </p>
+      
+      <div class="pt-4 flex flex-wrap gap-4">
+        <a href="#departments" class="bg-goldAccent hover:bg-white text-black font-bold text-[11px] uppercase tracking-[0.2em] px-8 py-4 rounded transition duration-300 shadow-xl">
+          Explore Showroom
+        </a>
+        <a href="tel:+919411300440" class="border border-white/20 hover:border-white bg-white/5 text-white font-semibold text-[11px] uppercase tracking-[0.2em] px-8 py-4 rounded transition">
+          Direct Line Call
+        </a>
+      </div>
+
+      <div class="flex space-x-3 pt-12">
+        <button onclick="setSlide(0)" class="slide-dot w-8 h-1 bg-goldAccent transition-all duration-300" aria-label="Slide 1"></button>
+        <button onclick="setSlide(1)" class="slide-dot w-4 h-1 bg-gray-700 transition-all duration-300" aria-label="Slide 2"></button>
+        <button onclick="setSlide(2)" class="slide-dot w-4 h-1 bg-gray-700 transition-all duration-300" aria-label="Slide 3"></button>
+      </div>
+    </div>
+  </header>
+
+  <section id="creed" class="py-20 px-6 md:px-12 bg-brandCard border-y border-white/5 text-center relative">
+    <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-goldAccent/40 to-transparent"></div>
+    <div class="max-w-4xl mx-auto space-y-4">
+      <p class="text-[10px] uppercase tracking-[0.4em] text-goldAccent font-semibold">The Core LoJi Blueprint</p>
+      <h2 class="text-2xl md:text-5xl font-serif text-white tracking-tight leading-snug">
+        “THE CUSTOMER REIGNS A KING, <br><span class="italic font-normal text-goldAccent">A KING NEVER BARGAINS</span>”
+      </h2>
+      <div class="h-[1px] w-16 bg-goldAccent mx-auto my-6"></div>
+      <p class="text-xs md:text-sm text-gray-400 max-w-xl mx-auto font-light tracking-wide leading-relaxed">
+        Enjoy a premium shopping experience with LoJi. We reject compromise, providing premium fabrics, tailored cuts, and long-lasting quality metrics across our entire showroom floor.
+      </p>
+    </div>
+  </section>
+
+  <section id="departments" class="py-24 px-6 md:px-12 bg-brandDark">
+    <div class="max-w-7xl mx-auto space-y-16">
+      <div class="text-center space-y-2">
+        <p class="text-goldAccent text-[10px] uppercase tracking-[0.3em] font-bold">Curated Alignments</p>
+        <h2 class="text-3xl font-serif text-white tracking-wide">Shop Everything at LoJi</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="group bg-brandCard rounded border border-white/5 hover:border-goldAccent/20 transition-all duration-500 overflow-hidden">
+          <div class="h-[400px] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Women's Apparel">
+            <div class="absolute inset-0 bg-gradient-to-t from-brandCard via-transparent to-transparent opacity-90"></div>
+            <span class="absolute bottom-4 left-4 bg-black/70 text-goldAccent text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border border-goldAccent/20">Naye Designs Just For You!</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <h3 class="text-lg font-serif text-white tracking-wide">Women's Fashion</h3>
+            <p class="text-xs text-gray-400 leading-relaxed font-light">Fresh looks, fresh you. Premium casual dresses, classic coordinate sets, and structural modern silhouettes built for effortless elegance.</p>
+            <a href="https://wa.me/919411300440?text=Hi%20LoJi%2C%20I%20am%20interested%20in%20the%20New%20Arrival%20Women%27s%20Fashion%20Collection." target="_blank" class="w-full block text-center py-3 bg-white/5 group-hover:bg-goldAccent group-hover:text-black font-semibold text-[10px] uppercase tracking-widest transition-all duration-300 rounded-sm">Enquire Box</a>
+          </div>
+        </div>
+
+        <div class="group bg-brandCard rounded border border-white/5 hover:border-goldAccent/20 transition-all duration-500 overflow-hidden">
+          <div class="h-[400px] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Men's Apparel">
+            <div class="absolute inset-0 bg-gradient-to-t from-brandCard via-transparent to-transparent opacity-90"></div>
+            <span class="absolute bottom-4 left-4 bg-black/70 text-goldAccent text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border border-goldAccent/20">Smart Looks, Smart Deals!</span>
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="space-y-1">
+              <h3 class="text-lg font-serif text-white tracking-wide">Men's Fashion</h3>
+              <p class="text-[10px] text-goldAccent uppercase font-bold tracking-widest">New Men's Collection!</p>
+            </div>
+            
+            <div class="space-y-3 text-xs font-light text-gray-400 border-t border-white/5 pt-3">
+              <div>
+                <span class="text-white font-medium block mb-0.5 text-[11px] tracking-wide">▪ Smart Casual</span>
+                Premium cotton shirts, tailored chinos & regular fit essential pants.
+              </div>
+              <div>
+                <span class="text-white font-medium block mb-0.5 text-[11px] tracking-wide">▪ Ethnic Wear</span>
+                Handcrafted designer kurtas engineered for festive and wedding-ready setups.
+              </div>
+              <div>
+                <span class="text-white font-medium block mb-0.5 text-[11px] tracking-wide">▪ Layered Looks</span>
+                Modern structural outerwear configurations including luxury jackets, vests, and more.
+              </div>
+            </div>
+
+            <a href="https://wa.me/919411300440?text=Hi%20LoJi%2C%20I%20am%20interested%20in%20the%20New%20Arrival%20Men%27s%20Fashion%20Collection." target="_blank" class="w-full block text-center py-3 bg-white/5 group-hover:bg-goldAccent group-hover:text-black font-semibold text-[10px] uppercase tracking-widest transition-all duration-300 rounded-sm">Enquire Box</a>
+          </div>
+        </div>
+
+        <div class="group bg-brandCard rounded border border-white/5 hover:border-goldAccent/20 transition-all duration-500 overflow-hidden">
+          <div class="h-[400px] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Kids' Apparel">
+            <div class="absolute inset-0 bg-gradient-to-t from-brandCard via-transparent to-transparent opacity-90"></div>
+            <span class="absolute bottom-4 left-4 bg-black/70 text-goldAccent text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 border border-goldAccent/20">Chhote Princes & Princesses Ke Looks</span>
+          </div>
+          <div class="p-6 space-y-3">
+            <h3 class="text-lg font-serif text-white tracking-wide">Kids' Fashion</h3>
+            <p class="text-xs text-gray-400 leading-relaxed font-light">Playwear configurations and intricate high-end patterns. Discover elegant children's party wear, structured mini-dresses, and resilient play-ready coordinate sets.</p>
+            <a href="https://wa.me/919411300440?text=Hi%20LoJi%2C%20I%20am%20interested%20in%20the%20Kids%27%20Party%20Wear%20and%20Dresses." target="_blank" class="w-full block text-center py-3 bg-white/5 group-hover:bg-goldAccent group-hover:text-black font-semibold text-[10px] uppercase tracking-widest transition-all duration-300 rounded-sm">Enquire Box</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="counter" class="py-24 px-6 md:px-12 bg-brandCard border-t border-white/5">
+    <div class="max-w-7xl mx-auto space-y-12">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+        <div class="space-y-1">
+          <p class="text-goldAccent text-[10px] uppercase tracking-[0.3em] font-bold">Performance & Style</p>
+          <h2 class="text-3xl font-serif text-white tracking-wide">The Shoe Counter & Slippers</h2>
+        </div>
+        <p class="text-xs text-gray-400 max-w-sm font-light tracking-wide leading-relaxed">
+          Complete your outfit with structured, high-grade footwear solutions designed to deliver supreme daily comfort.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="bg-brandDark rounded p-4 border border-white/5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="h-48 bg-zinc-900 rounded overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-white tracking-wide">Women's Premium Footwear</h4>
+              <p class="text-[11px] text-gray-400 mt-0.5">Luxury Heels, Flat Slippers & Trainers</p>
+            </div>
+          </div>
+          <a href="https://wa.me/919411300440?text=Hi%20LoJi%2C%20I%20am%20inquiring%20about%20Women%27s%20Shoes%20and%20Slippers." target="_blank" class="w-full block text-center py-2 bg-white/5 hover:bg-goldAccent hover:text-black font-semibold text-[10px] uppercase tracking-widest transition rounded-sm">Enquire Box</a>
+        </div>
+
+        <div class="bg-brandDark rounded p-4 border border-white/5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="h-48 bg-zinc-900 rounded overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-white tracking-wide">Men's Premium Footwear</h4>
+              <p class="text-[11px] text-gray-400 mt-0.5">Formal Leather, Oxford Brogues & Athleisure</p>
+            </div>
+          </div>
+          <a href="https://wa.me/919411300440?text=Hi%20LoJi%2C%20I%20am%20inquiring%20about%20Men%27s%20Shoes%20and%20Footwear." target="_blank" class="w-full block text-center py-2 bg-white/5 hover:bg-goldAccent hover:text-black font-semibold text-[10px] uppercase tracking-widest transition rounded-sm">Enquire Box</a>
+        </div>
+
+        <div class="bg-brandDark rounded p-4 border border-white/5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="h-48 bg-zinc-900 rounded overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-white tracking-wide">Comfort Crocs For All</h4>
+              <p class="text-[11px] text-gray-400 mt-0.5">Ergonomic Daily Clogs & Orthopedic Slides</p>
+            </div>
+          </div>
+          <a href="https://wa.me/919411300440?text=Hi%20LoJi%2C%20I%20am%20inquiring%20about%20the%20Comfort%20Crocs%20Collection." target="_blank" class="w-full block text-center py-2 bg-white/5 hover:bg-goldAccent hover:text-black font-semibold text-[10px] uppercase tracking-widest transition rounded-sm">Enquire Box</a>
+        </div>
+
+        <div class="bg-brandDark rounded p-4 border border-white/5 flex flex-col justify-between space-y-4">
+          <div class="space-y-3">
+            <div class="h-48 bg-zinc-900 rounded overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1515488042361-404e9250afef?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-white tracking-wide">Kids' Soft Slippers</h4>
+              <p class="text-[11px] text-gray-400 mt-0.5">Flexible Playground Sandals & Bright Slippers</p>
+            </div>
+          </div>
+          <a href="https://wa.me/919411300440?text=Hi%20LoJi%2C%20I%20am%20inquiring%20about%20Kids%27%20Slippers%20and%20Sandals." target="_blank" class="w-full block text-center py-2 bg-white/5 hover:bg-goldAccent hover:text-black font-semibold text-[10px] uppercase tracking-widest transition rounded-sm">Enquire Box</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" class="py-24 px-6 md:px-12 bg-brandDark border-t border-white/5">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-5 space-y-6">
+        <p class="text-goldAccent text-[10px] uppercase tracking-[0.3em] font-bold">Physical Flagship</p>
+        <h2 class="text-3xl font-serif text-white tracking-wide">Visit Our Store Floor</h2>
+        <p class="text-xs md:text-sm text-gray-400 leading-relaxed font-light tracking-wide">
+          Drop by our retail space to touch the fabrics, experience real-time tailoring assistance, and browse unlisted luxury footwear styles.
+        </p>
+        
+        <div class="space-y-4 pt-2 text-xs font-light tracking-wide">
+          <div>
+            <h4 class="text-goldAccent font-semibold uppercase tracking-widest text-[11px] mb-1">Store Address</h4>
+            <p class="text-gray-300 leading-relaxed">LoJi Footwear & Apparel Retail Outlet,<br>Main Market Showroom District, India</p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4 border-t border-white/5 pt-4">
+            <div>
+              <h5 class="text-gray-500 uppercase font-semibold text-[10px] tracking-wider">Showroom Timings</h5>
+              <p class="text-gray-300 mt-1 font-medium text-[13px]">10:00 AM – 9:30 PM</p>
+              <p class="text-[10px] text-gray-500 mt-0.5">Open Daily Always</p>
+            </div>
+            <div>
+              <h5 class="text-gray-500 uppercase font-semibold text-[10px] tracking-wider">Direct Hotline</h5>
+              <a href="tel:+919411300440" class="text-goldAccent mt-1 block font-medium text-[13px] hover:underline">+91 94113 00440</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 w-full h-[380px] rounded overflow-hidden bg-brandCard border border-white/5 relative">
+        <iframe 
+          src="https://maps.app.goo.gl/JfU47vZRPE1PUAae7" 
+          class="w-full h-full border-0 grayscale invert opacity-75 contrast-125" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="w-full py-12 text-center bg-black border-t border-white/5 text-[11px] text-gray-500 tracking-wider space-y-2">
+    <p class="font-serif italic text-gray-400 text-xs">“Enjoy a premium shopping experience with LoJi”</p>
+    <p>© 2026 LoJi Apparel & Footwear. Thank You, See You Again!</p>
+  </footer>
+
+  <script>
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slide-dot');
+
+    function setSlide(index) {
+      // Fade out active layer components
+      slides[currentSlideIndex].classList.replace('opacity-100', 'opacity-0');
+      dots[currentSlideIndex].classList.replace('bg-goldAccent', 'bg-gray-700');
+      dots[currentSlideIndex].classList.replace('w-8', 'w-4');
+
+      // Bring up targeted sequence variables
+      currentSlideIndex = index;
+      slides[currentSlideIndex].classList.replace('opacity-0', 'opacity-100');
+      dots[currentSlideIndex].classList.replace('bg-gray-700', 'bg-goldAccent');
+      dots[currentSlideIndex].classList.replace('w-4', 'w-8');
+    }
+
+    // Automate loop intervals every 5 seconds (5000ms)
+    setInterval(() => {
+      let nextIndex = (currentSlideIndex + 1) % slides.length;
+      setSlide(nextIndex);
+    }, 5000);
+  </script>
+
+</body>
+</html>
