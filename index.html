@@ -465,22 +465,45 @@
  
 <script>
     (function() {
-        console.log("Directly injected assistant running...");
-        
+        // 1. Setup Styles (Added styles for input and chat messages)
         var style = document.createElement('style');
-        style.innerHTML = '#ai-assistant-btn { position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 999999 !important; padding: 12px 24px !important; border-radius: 50px !important; background-color: #000 !important; color: #fff !important; border: none !important; cursor: pointer !important; font-family: sans-serif !important; display: flex !important; } #ai-assistant-popup { position: fixed !important; bottom: 85px !important; right: 24px !important; width: 300px !important; height: 400px !important; background: #fff !important; border-radius: 16px !important; z-index: 999999 !important; border: 1px solid #ccc !important; } .hidden { display: none !important; }';
+        style.innerHTML = `
+            #ai-assistant-btn { position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 999999 !important; padding: 12px 24px !important; border-radius: 50px !important; background-color: #000 !important; color: #fff !important; border: none !important; cursor: pointer !important; }
+            #ai-assistant-popup { position: fixed !important; bottom: 85px !important; right: 24px !important; width: 300px !important; height: 400px !important; background: #fff !important; border-radius: 16px !important; z-index: 999999 !important; border: 1px solid #ccc !important; display: flex !important; flex-direction: column !important; }
+            #chat-messages { flex: 1 !important; padding: 15px !important; overflow-y: auto !important; border-bottom: 1px solid #eee !important; }
+            .input-area { padding: 10px !important; display: flex !important; gap: 5px !important; }
+            .hidden { display: none !important; }
+        `;
         document.head.appendChild(style);
 
+        // 2. Create HTML Structure
         var container = document.createElement('div');
-        container.innerHTML = '<button id="ai-assistant-btn">💬 Personal Assistant</button>' +
-                              '<div id="ai-assistant-popup" class="hidden">' +
-                              '<div style="padding:15px; background:#000; color:#fff;">Personal Assistant</div>' +
-                              '<div style="padding:20px;">Hello!</div>' +
-                              '</div>';
+        container.innerHTML = `
+            <button id="ai-assistant-btn">💬 Personal Assistant</button>
+            <div id="ai-assistant-popup" class="hidden">
+                <div style="padding:15px; background:#000; color:#fff;">Personal Assistant</div>
+                <div id="chat-messages"><div>Hello! How can I help you?</div></div>
+                <div class="input-area">
+                    <input type="text" id="ai-input" placeholder="Type a message..." style="flex:1; padding:5px;">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        `;
         document.body.appendChild(container);
 
-        document.getElementById('ai-assistant-btn').addEventListener('click', function() {
+        // 3. Logic for Toggling and Sending
+        document.getElementById('ai-assistant-btn').addEventListener('click', () => {
             document.getElementById('ai-assistant-popup').classList.toggle('hidden');
+        });
+
+        document.getElementById('send-btn').addEventListener('click', function() {
+            var input = document.getElementById('ai-input');
+            var chat = document.getElementById('chat-messages');
+            if (input.value.trim() !== "") {
+                chat.innerHTML += '<div><b>You:</b> ' + input.value + '</div>';
+                input.value = ""; // Clear input
+                chat.scrollTop = chat.scrollHeight; // Auto-scroll to bottom
+            }
         });
     })();
 </script></body>
