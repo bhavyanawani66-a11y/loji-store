@@ -24,7 +24,7 @@
         .hidden { display: none !important; }
         @media (max-width: 480px) { #ai-assistant-popup { width: 90vw; right: 5vw; } }
     `;
-    document.head.appendChild(style);
+    document.head.appendChild(style);document.getElementById('ai-assistant-btn').style.pointerEvents = 'auto';
 
     // 2. Create the HTML Structure
     const container = document.createElement('div');
