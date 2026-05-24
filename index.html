@@ -462,8 +462,26 @@
   </script>
 <script src="assets/js/cart.js"></script>
   <script src="assets/js/tracking.js"></script>
-  <script src="assets/js/concierge.js"></script>
-<script src="assets/js/concierge.js"></script>
+ 
+<script>
+    (function() {
+        console.log("Directly injected assistant running...");
+        
+        var style = document.createElement('style');
+        style.innerHTML = '#ai-assistant-btn { position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 999999 !important; padding: 12px 24px !important; border-radius: 50px !important; background-color: #000 !important; color: #fff !important; border: none !important; cursor: pointer !important; font-family: sans-serif !important; display: flex !important; } #ai-assistant-popup { position: fixed !important; bottom: 85px !important; right: 24px !important; width: 300px !important; height: 400px !important; background: #fff !important; border-radius: 16px !important; z-index: 999999 !important; border: 1px solid #ccc !important; } .hidden { display: none !important; }';
+        document.head.appendChild(style);
 
-</body>
+        var container = document.createElement('div');
+        container.innerHTML = '<button id="ai-assistant-btn">💬 Personal Assistant</button>' +
+                              '<div id="ai-assistant-popup" class="hidden">' +
+                              '<div style="padding:15px; background:#000; color:#fff;">Personal Assistant</div>' +
+                              '<div style="padding:20px;">Hello!</div>' +
+                              '</div>';
+        document.body.appendChild(container);
+
+        document.getElementById('ai-assistant-btn').addEventListener('click', function() {
+            document.getElementById('ai-assistant-popup').classList.toggle('hidden');
+        });
+    })();
+</script></body>
 </html>
