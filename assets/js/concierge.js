@@ -4,7 +4,7 @@ const conciergeHTML = `
    target="_blank" 
    id="concierge-btn"
    style="position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; align-items: center; background-color: #000; color: #fff; padding: 12px 20px; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-family: sans-serif; font-weight: bold;">
-   💬 <span style="margin-left: 8px;">Concierge</span>
+   💬 <span style="margin-left: 8px;">Personal Stylist</span>
 </a>
 `;
 
