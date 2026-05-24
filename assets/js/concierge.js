@@ -52,7 +52,13 @@
     overflow: hidden;
     border: 1px solid #eee;
   }
-  #chat-popup.hidden { display: none; }
+  #chat-popup.hidden { 
+  display: none !important; 
+}
+
+#chat-popup {
+  display: flex !important; /* Force it to show if needed for testing */
+}
 
   /* Header Styling */
   .chat-header {
