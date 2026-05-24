@@ -1,9 +1,9 @@
 (function() {
-    // 1. Create and inject CSS Styles
+    // 1. Create and inject Styles
     const style = document.createElement('style');
     style.innerHTML = `
         #ai-assistant-btn { 
-            position: fixed; bottom: 24px; right: 24px; z-index: 2147483647; 
+            position: fixed; bottom: 24px; right: 24px; z-index: 999999; 
             padding: 12px 24px; border-radius: 50px; background-color: #000; 
             color: #fff; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
             font-family: sans-serif; font-weight: 600; display: flex; align-items: center; 
@@ -11,7 +11,7 @@
         #ai-assistant-popup { 
             position: fixed; bottom: 85px; right: 24px; width: 340px; height: 450px; 
             background: #fff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-            z-index: 2147483647; display: flex; flex-direction: column; 
+            z-index: 999999; display: flex; flex-direction: column; 
             overflow: hidden; border: 1px solid #ddd; 
         }
         .ai-header { 
@@ -20,39 +20,38 @@
             font-family: sans-serif; font-weight: bold; 
         }
         .ai-close { background: none; border: none; color: #fff; cursor: pointer; font-size: 18px; }
-        .ai-body { flex: 1; padding: 20px; font-family: sans-serif; color: #333; overflow-y: auto; }
+        .ai-body { flex: 1; padding: 20px; color: #333; overflow-y: auto; }
         .hidden { display: none !important; }
-        @media (max-width: 480px) { #ai-assistant-popup { width: 90vw; right: 5vw; } }
     `;
-    document.head.appendChild(style);document.getElementById('ai-assistant-btn').style.pointerEvents = 'auto';
+    document.head.appendChild(style);
 
-    // 2. Create the HTML Structure
+    // 2. Inject HTML
     const container = document.createElement('div');
     container.innerHTML = `
         <button id="ai-assistant-btn">💬 Personal Assistant</button>
         <div id="ai-assistant-popup" class="hidden">
             <div class="ai-header">
                 <span>Personal Assistant</span>
-                <button class="ai-close">✕</button>
+                <button id="close-ai-btn" class="ai-close">✕</button>
             </div>
             <div class="ai-body">
-                <p>Hello! How can I assist you with your shopping today?</p>
+                <p>Hello! How can I assist you today?</p>
             </div>
         </div>
     `;
     document.body.appendChild(container);
 
-    // 3. Robust Event Handling (Handles button clicks dynamically)
+    // 3. EVENT DELEGATION (This is the fix)
     document.addEventListener('click', function(e) {
         const popup = document.getElementById('ai-assistant-popup');
         
-        // Toggle if trigger is clicked
+        // If the button clicked is the trigger
         if (e.target && e.target.id === 'ai-assistant-btn') {
-            popup.classList.toggle('hidden');
+            popup.classList.remove('hidden');
         }
         
-        // Close if X button is clicked
-        if (e.target && e.target.classList.contains('ai-close')) {
+        // If the button clicked is the close 'X'
+        if (e.target && e.target.id === 'close-ai-btn') {
             popup.classList.add('hidden');
         }
     });
