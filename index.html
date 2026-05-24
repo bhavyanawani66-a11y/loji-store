@@ -464,63 +464,76 @@
   <script src="assets/js/tracking.js"></script>
  
 <script>
-    (function() {
-        // 1. Updated Styles: Added explicit visibility for the close button
-        var style = document.createElement('style');
-        style.innerHTML = `
-            #ai-assistant-btn { position: fixed !important; bottom: 24px !important; right: 24px !important; z-index: 999999 !important; padding: 12px 24px !important; border-radius: 50px !important; background-color: #000 !important; color: #fff !important; border: none !important; cursor: pointer !important; }
-            #ai-assistant-popup { position: fixed !important; bottom: 85px !important; right: 24px !important; width: 300px !important; height: 400px !important; background: #fff !important; border-radius: 16px !important; z-index: 999999 !important; border: 1px solid #ccc !important; display: flex !important; flex-direction: column !important; }
-            .ai-header { padding: 15px !important; background: #000 !important; color: #fff !important; display: flex !important; justify-content: space-between !important; align-items: center !important; }
-            .ai-close { background: none !important; border: none !important; color: #fff !important; cursor: pointer !important; font-size: 18px !important; display: block !important; }
-            #chat-messages { flex: 1 !important; padding: 15px !important; overflow-y: auto !important; border-bottom: 1px solid #eee !important; }
-            .input-area { padding: 10px !important; display: flex !important; gap: 5px !important; }
-            .hidden { display: none !important; }
-        `;
-        document.head.appendChild(style);
+(function() {
+    // 1. Injected Styles
+    const style = document.createElement('style');
+    style.innerHTML = `
+        #ai-assistant-btn { position: fixed; bottom: 24px; right: 24px; z-index: 999999; padding: 12px 24px; border-radius: 50px; background: #000; color: #fff; border: none; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); font-weight: bold; }
+        #ai-assistant-popup { position: fixed; bottom: 85px; right: 24px; width: 320px; height: 450px; background: #fff; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 999999; display: flex; flex-direction: column; border: 1px solid #ddd; overflow: hidden; }
+        .ai-header { padding: 15px; background: #000; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+        #chat-history { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; font-family: sans-serif; }
+        .input-area { padding: 10px; border-top: 1px solid #eee; display: flex; gap: 5px; }
+        .hidden { display: none !important; }
+        .msg { padding: 8px 12px; border-radius: 8px; font-size: 14px; max-width: 80%; }
+        .user-msg { align-self: flex-end; background: #000; color: #fff; }
+        .ai-msg { align-self: flex-start; background: #f0f0f0; color: #333; }
+    `;
+    document.head.appendChild(style);
 
-        // 2. HTML Structure
-        var container = document.createElement('div');
-        container.innerHTML = `
-            <button id="ai-assistant-btn">💬 Personal Assistant</button>
-            <div id="ai-assistant-popup" class="hidden">
-                <div class="ai-header">
-                    <span>Personal Assistant</span>
-                    <button id="close-ai-btn" class="ai-close">✕</button>
-                </div>
-                <div id="chat-messages"><div>Hello! How can I help you?</div></div>
-                <div class="input-area">
-                    <input type="text" id="ai-input" placeholder="Type a message..." style="flex:1; padding:5px;">
-                    <button id="send-btn">Send</button>
-                </div>
+    // 2. UI Injection
+    const container = document.createElement('div');
+    container.innerHTML = `
+        <button id="ai-assistant-btn">💬 Personal Assistant</button>
+        <div id="ai-assistant-popup" class="hidden">
+            <div class="ai-header"><span>Assistant</span><button id="close-btn" style="background:none; border:none; color:#fff; cursor:pointer;">✕</button></div>
+            <div id="chat-history"></div>
+            <div class="input-area">
+                <input type="text" id="ai-input" style="flex:1; padding:8px;" placeholder="Ask me anything...">
+                <button id="send-btn">Send</button>
             </div>
-        `;
-        document.body.appendChild(container);
+        </div>
+    `;
+    document.body.appendChild(container);
 
-        // 3. Logic: Toggle, Send, and Enter key
-        const popup = document.getElementById('ai-assistant-popup');
+    // 3. State Management (History)
+    const chatHistory = document.getElementById('chat-history');
+    
+    // Load existing history from sessionStorage
+    const savedHistory = sessionStorage.getItem('ai_chat_history');
+    if (savedHistory) chatHistory.innerHTML = savedHistory;
+
+    const saveChat = () => sessionStorage.setItem('ai_chat_history', chatHistory.innerHTML);
+
+    const addMessage = (text, isUser) => {
+        const div = document.createElement('div');
+        div.className = `msg ${isUser ? 'user-msg' : 'ai-msg'}`;
+        div.innerText = text;
+        chatHistory.appendChild(div);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+        saveChat();
+    };
+
+    // 4. Interaction Logic
+    document.getElementById('ai-assistant-btn').addEventListener('click', () => {
+        document.getElementById('ai-assistant-popup').classList.toggle('hidden');
+    });
+
+    document.getElementById('close-btn').addEventListener('click', () => {
+        document.getElementById('ai-assistant-popup').classList.add('hidden');
+    });
+
+    const handleSend = () => {
         const input = document.getElementById('ai-input');
-        const chat = document.getElementById('chat-messages');
+        if (!input.value.trim()) return;
+        addMessage(input.value, true);
+        
+        // Mock AI Response
+        setTimeout(() => addMessage("I am processing your query regarding: " + input.value, false), 500);
+        input.value = "";
+    };
 
-        // Toggle
-        document.getElementById('ai-assistant-btn').addEventListener('click', () => popup.classList.toggle('hidden'));
-        document.getElementById('close-ai-btn').addEventListener('click', () => popup.classList.add('hidden'));
-
-        // Send function
-        const sendMessage = () => {
-            if (input.value.trim() !== "") {
-                chat.innerHTML += '<div><b>You:</b> ' + input.value + '</div>';
-                input.value = "";
-                chat.scrollTop = chat.scrollHeight;
-            }
-        };
-
-        // Send on Button Click
-        document.getElementById('send-btn').addEventListener('click', sendMessage);
-
-        // Send on "Enter" Key
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    })();
-</script></body>
+    document.getElementById('send-btn').addEventListener('click', handleSend);
+    document.getElementById('ai-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
+})();
+</script>></body>
 </html>
