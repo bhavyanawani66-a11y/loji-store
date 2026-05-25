@@ -22,7 +22,7 @@ function logEvent(eventName, eventDetails = "") {
     }
 }
 
-// Automatically log initial floor entry
+// Log initial showroom floor entry
 window.addEventListener('DOMContentLoaded', () => {
     logEvent("Page Visit");
 });
