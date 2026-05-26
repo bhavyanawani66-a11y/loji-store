@@ -1,3 +1,7 @@
+// ==========================================
+// LOJI CORE GLOBAL LOGIC ENGINE & AUTOMATION PIPELINE
+// ==========================================
+
 // Global Cart Badge Syncer
 function syncCartBadgeGlobal() {
     const lojiCart = JSON.parse(localStorage.getItem('loji_cart') || '[]');
@@ -41,7 +45,9 @@ function dispatchOrderAutomatedNotifications(customerName, customerPhone, custom
             "Content-Type": "application/json"
         },
         body: JSON.stringify(whatsappPayload)
-    }).catch(err => console.error("WhatsApp Link Offline:", err));
+    })
+    .then(res => console.log("WhatsApp automation executed successfully."))
+    .catch(err => console.error("WhatsApp Link Offline:", err));
 
 
     // --- FEATURE B: Automated Email Receipt Dispatch ---
@@ -64,5 +70,14 @@ function dispatchOrderAutomatedNotifications(customerName, customerPhone, custom
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emailPayload)
-    }).catch(err => console.error("Email Link Offline:", err));
+    })
+    .then(res => console.log("Email tracking automation executed successfully."))
+    .catch(err => console.error("Email Link Offline:", err));
 }
+
+// Ensure functions are exposed on window mount for cross-page HTML execution
+window.syncCartBadgeGlobal = syncCartBadgeGlobal;
+window.dispatchOrderAutomatedNotifications = dispatchOrderAutomatedNotifications;
+
+// Fallback listener to auto-sync the badge if an inline body onload is missing
+document.addEventListener('DOMContentLoaded', syncCartBadgeGlobal);
