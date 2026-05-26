@@ -38,12 +38,17 @@
     .custom-scrollbar::-webkit-scrollbar { width: 6px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: #FFFFFF; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 10px; }
+    .product-img-zoom:hover img { transform: scale(1.04); }
   </style>
   
   <script src="assets/js/tracking.js"></script>
   <script src="assets/js/cart.js"></script>
 </head>
-<body class="bg-brandLight text-zinc-800 antialiased custom-scrollbar">
+<body class="bg-brandLight text-zinc-800 antialiased custom-scrollbar" onload="syncCartBadgeGlobal()">
+
+  <div class="w-full bg-brandDark text-white py-2 text-center text-[10px] font-bold uppercase tracking-[0.3em] border-b border-goldAccent/30">
+    ✨ Standard Inaugural Offer: <span class="text-goldAccent">10% Standard Discount</span> Applied Automatically At Bag Checkout
+  </div>
 
   <nav class="w-full py-4 px-6 md:px-12 flex justify-between items-center bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-brandBorder shadow-sm">
     <a href="." class="group block cursor-pointer select-none">
@@ -57,17 +62,16 @@
     
     <div class="hidden lg:flex space-x-8 text-[12px] font-medium uppercase tracking-[0.2em] text-zinc-600">
       <a href="#home" class="hover:text-goldAccent transition-colors">Home</a>
-      <a href="#creed" class="hover:text-goldAccent transition-colors">Our Creed</a>
+      <a href="#todays-option" class="hover:text-goldAccent transition-colors">Today's Option</a>
       <a href="#departments" class="hover:text-goldAccent transition-colors">Departments</a>
       <a href="#counter" class="hover:text-goldAccent transition-colors">Shoe Counter</a>
-      <a href="#visit" class="hover:text-goldAccent transition-colors">Visit Us</a>
     </div>
 
     <div class="flex items-center space-x-4">
-      <div class="relative cursor-pointer mr-2" onclick="logEvent('Cart Icon Clicked', 'Nav View')">
-         <span class="text-zinc-700 font-bold text-xs uppercase tracking-widest">Bag</span>
-         <span class="cart-count-badge hidden absolute -top-3 -right-4 bg-[#B8860B] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">0</span>
-      </div>
+      <a href="./bag.html" onclick="logEvent('Cart Icon Clicked', 'Nav View')" class="relative cursor-pointer mr-6 block group">
+         <span class="text-zinc-700 font-bold text-xs uppercase tracking-widest group-hover:text-goldAccent transition-colors">Bag</span>
+         <span id="global-nav-badge" class="absolute -top-3 -right-4 bg-[#B8860B] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">0</span>
+      </a>
       <a href="https://wa.me/919411300440" target="_blank" onclick="logEvent('WhatsApp Concierge Click', 'Global Navbar')" class="bg-brandDark hover:bg-goldAccent text-white hover:text-brandDark font-bold text-[11px] uppercase tracking-widest px-5 py-3 rounded transition-all duration-300">
         WhatsApp Concierge
       </a>
@@ -112,6 +116,43 @@
     </div>
   </section>
 
+  <section id="todays-option" class="py-16 px-6 md:px-12 bg-white border-b border-brandBorder scroll-mt-20">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center space-y-2 mb-12">
+        <span class="bg-goldAccent/10 text-goldAccent text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-goldAccent/20">Featured Selection</span>
+        <h2 class="text-3xl font-serif text-brandDark font-bold tracking-wide">Today's Premium Option</h2>
+      </div>
+
+      <div class="bg-brandCard border border-brandBorder rounded overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 shadow-sm items-center max-w-5xl mx-auto">
+        <div class="lg:col-span-6 h-[400px] overflow-hidden relative cursor-pointer product-img-zoom" onclick="navigateToProduct('imperial-kurta')">
+          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700" alt="Today's Option Fit">
+        </div>
+        <div class="lg:col-span-6 p-8 lg:p-12 space-y-6">
+          <div class="space-y-2">
+            <span class="text-[10px] text-goldAccent font-bold uppercase tracking-widest">Premium Showroom Choice</span>
+            <h3 onclick="navigateToProduct('imperial-kurta')" class="text-2xl md:text-3xl font-serif text-brandDark font-bold tracking-tight cursor-pointer hover:text-goldAccent transition-colors">The Imperial Wedding Kurta Set</h3>
+            <div class="flex items-center space-x-3 mt-2">
+              <span class="text-zinc-400 line-through text-sm font-medium">₹5,500</span>
+              <span class="text-brandDark font-serif font-bold text-xl">₹4,950</span>
+              <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">10% Off Applied</span>
+            </div>
+          </div>
+          <p class="text-zinc-600 text-sm font-light leading-relaxed">
+            Handcrafted with raw artisan thread selections. This wedding ensemble combines architectural silhouette lines with unmatched comfort for luxury traditional events.
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="navigateToProduct('imperial-kurta')" class="bg-brandDark hover:bg-goldAccent text-white hover:text-brandDark font-bold text-[10px] uppercase tracking-widest py-3 rounded transition-all duration-300">
+              VIEW DETAILS
+            </button>
+            <button onclick="addDiscountedToCart('The Imperial Wedding Kurta Set', 4950, 5500, 'Mens Premium Apparel')" class="border border-brandDark text-brandDark hover:bg-brandDark hover:text-white font-bold text-[10px] uppercase tracking-widest py-3 rounded transition-all duration-300">
+              CURATE TO BAG
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="departments" class="py-20 px-6 md:px-12 bg-brandLight">
     <div class="max-w-7xl mx-auto space-y-12">
       <div class="text-center space-y-2">
@@ -122,134 +163,42 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="group bg-brandCard rounded border border-brandBorder hover:border-goldAccent/40 transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md">
           <div>
-            <div class="h-[340px] overflow-hidden relative">
+            <div class="h-[340px] overflow-hidden relative cursor-pointer" onclick="window.location.href='#womens-listing'">
               <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Women's Apparel">
-              <div class="absolute inset-0 bg-gradient-to-t from-brandCard via-transparent to-transparent opacity-60"></div>
-              <span class="absolute bottom-4 left-4 bg-brandDark text-goldAccent text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 shadow-md">Naye Designs Just For You!</span>
+              <span class="absolute bottom-4 left-4 bg-brandDark text-goldAccent text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 shadow-md">Naye Designs</span>
             </div>
             <div class="p-6 space-y-2">
               <h3 class="text-xl font-serif text-brandDark font-bold tracking-wide">Women's Fashion</h3>
-              <p class="text-sm text-zinc-600 font-light leading-relaxed">Fresh looks, fresh you. Premium casual dresses, classic coordinate sets, and structural modern silhouettes built for effortless elegance.</p>
+              <p class="text-sm text-zinc-600 font-light">Premium casual dresses, classic coordinate sets, and structural modern silhouettes.</p>
             </div>
           </div>
           <div class="p-6 pt-0">
-            <a href="#womens-listing" onclick="logEvent('Showroom Floor View', 'Womens')" class="w-full block text-center py-3 bg-brandDark hover:bg-goldAccent text-white hover:text-brandDark font-bold text-[11px] uppercase tracking-widest transition-all duration-300 rounded-sm">EXPLORE FLOOR</a>
+            <a href="#womens-listing" class="w-full block text-center py-3 bg-brandDark hover:bg-goldAccent text-white hover:text-brandDark font-bold text-[11px] uppercase tracking-widest transition-all duration-300 rounded-sm">EXPLORE FLOOR</a>
           </div>
         </div>
 
         <div class="group bg-brandCard rounded border border-brandBorder hover:border-goldAccent/40 transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md">
           <div>
-            <div class="h-[340px] overflow-hidden relative">
+            <div class="h-[340px] overflow-hidden relative cursor-pointer" onclick="window.location.href='#mens-listing'">
               <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Men's Apparel">
-              <div class="absolute inset-0 bg-gradient-to-t from-brandCard via-transparent to-transparent opacity-60"></div>
-              <span class="absolute bottom-4 left-4 bg-brandDark text-goldAccent text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 shadow-md">Smart Looks, Smart Deals!</span>
-            </div>
-            <div class="p-6 space-y-4">
-              <div>
-                <h3 class="text-xl font-serif text-brandDark font-bold tracking-wide">Men's Fashion</h3>
-                <span class="text-[10px] font-bold text-goldMuted tracking-wider uppercase block mt-1">New Men's Collection!</span>
-              </div>
-              <div class="space-y-2 text-sm text-zinc-600 font-light">
-                <p><strong class="text-brandDark font-medium">• Smart Casual:</strong> Premium cotton shirts, tailored chinos & regular fit essential pants.</p>
-                <p><strong class="text-brandDark font-medium">• Ethnic Wear:</strong> Handcrafted designer kurtas engineered for festive and wedding-ready setups.</p>
-              </div>
-            </div>
-          </div>
-          <div class="p-6 pt-0">
-            <a href="#mens-listing" onclick="logEvent('Showroom Floor View', 'Mens')" class="w-full block text-center py-3 bg-brandDark hover:bg-goldAccent text-white hover:text-brandDark font-bold text-[11px] uppercase tracking-widest transition-all duration-300 rounded-sm">EXPLORE FLOOR</a>
-          </div>
-        </div>
-
-        <div class="group bg-brandCard rounded border border-brandBorder hover:border-goldAccent/40 transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md">
-          <div>
-            <div class="h-[340px] overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Kids' Apparel">
-              <div class="absolute inset-0 bg-gradient-to-t from-brandCard via-transparent to-transparent opacity-60"></div>
-              <span class="absolute bottom-4 left-4 bg-brandDark text-goldAccent text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 shadow-md">Chhote Princes Ke Looks</span>
+              <span class="absolute bottom-4 left-4 bg-brandDark text-goldAccent text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 shadow-md">Smart Looks</span>
             </div>
             <div class="p-6 space-y-2">
-              <h3 class="text-xl font-serif text-brandDark font-bold tracking-wide">Kids' Fashion</h3>
-              <p class="text-sm text-zinc-600 font-light leading-relaxed">Playwear configurations and intricate high-end patterns. Discover elegant children's party wear, structured mini-dresses, and resilient play-ready coordinate sets.</p>
+              <h3 class="text-xl font-serif text-brandDark font-bold tracking-wide">Men's Fashion</h3>
+              <p class="text-sm text-zinc-600 font-light">Premium cotton shirts, tailored chinos, and artisan-woven festive kurtas.</p>
             </div>
           </div>
           <div class="p-6 pt-0">
-            <a href="#kids-listing" onclick="logEvent('Showroom Floor View', 'Kids')" class="w-full block text-center py-3 bg-brandDark hover:bg-goldAccent text-white hover:text-brandDark font-bold text-[11px] uppercase tracking-widest transition-all duration-300 rounded-sm">EXPLORE FLOOR</a>
+            <a href="#mens-listing" class="w-full block text-center py-3 bg-brandDark hover:bg-goldAccent text-white hover:text-brandDark font-bold text-[11px] uppercase tracking-widest transition-all duration-300 rounded-sm">EXPLORE FLOOR</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="womens-listing" class="py-16 px-6 md:px-12 bg-brandCard border-t border-brandBorder scroll-mt-20">
-    <div class="max-w-7xl mx-auto space-y-8">
-      <div class="border-l-2 border-goldAccent pl-4">
-        <h2 class="text-2xl font-serif text-brandDark tracking-wide font-bold">Women's Collection Catalog</h2>
-        <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold mt-1">Jeans, Co-Ord Sets & Premium Fits</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-brandLight p-4 rounded border border-brandBorder flex flex-col justify-between shadow-sm">
-          <div class="space-y-3">
-            <div class="h-64 rounded bg-zinc-100 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Women's Denim">
+        <div class="group bg-brandCard rounded border border-brandBorder hover:border-goldAccent/40 transition-all duration-500 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md">
+          <div>
+            <div class="h-[340px] overflow-hidden relative cursor-pointer" onclick="window.location.href='#counter'">
+              <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Kids' Apparel">
+              <span class="absolute bottom-4 left-4 bg-brandDark text-goldAccent text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 shadow-md">Chhote Princes</span>
             </div>
-            <div class="flex justify-between items-start">
-              <h4 class="font-serif text-brandDark text-base font-bold">Premium High-Waist Jeans</h4>
-              <span class="text-[10px] bg-goldAccent/10 text-goldAccent font-bold px-2 py-0.5 rounded border border-goldAccent/20 uppercase tracking-widest">Jeans</span>
-            </div>
-            <p class="text-sm text-zinc-600 font-light">Super stretch comfort denims with curated contours, designed for premium high-waist definitions.</p>
-          </div>
-          <button onclick="addToCart('Women Premium High-Waist Jeans', '1899', 'Womens Apparel')" class="mt-4 block w-full text-center py-2 bg-brandCard hover:bg-brandDark text-zinc-800 hover:text-white border border-brandBorder transition text-[11px] font-bold uppercase tracking-wider rounded-sm">CURATE TO BAG</button>
-        </div>
-
-        <div class="bg-brandLight p-4 rounded border border-brandBorder flex flex-col justify-between shadow-sm">
-          <div class="space-y-3">
-            <div class="h-64 rounded bg-zinc-100 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Luxury Co-Ord">
-            </div>
-            <div class="flex justify-between items-start">
-              <h4 class="font-serif text-brandDark text-base font-bold">Luxury Linen Co-Ord Set</h4>
-              <span class="text-[10px] bg-goldAccent/10 text-goldAccent font-bold px-2 py-0.5 rounded border border-goldAccent/20 uppercase tracking-widest">Coordinates</span>
-            </div>
-            <p class="text-sm text-zinc-600 font-light">Premium daily linen coordinate structures configured with modern relaxed silhouettes.</p>
-          </div>
-          <button onclick="addToCart('Luxury Linen Co-Ord Set', '2499', 'Womens Apparel')" class="mt-4 block w-full text-center py-2 bg-brandCard hover:bg-brandDark text-zinc-800 hover:text-white border border-brandBorder transition text-[11px] font-bold uppercase tracking-wider rounded-sm">CURATE TO BAG</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="mens-listing" class="py-16 px-6 md:px-12 bg-brandLight border-t border-brandBorder scroll-mt-20">
-    <div class="max-w-7xl mx-auto space-y-8">
-      <div class="border-l-2 border-goldAccent pl-4">
-        <h2 class="text-2xl font-serif text-brandDark tracking-wide font-bold">Men's Collection Catalog</h2>
-        <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold mt-1">Premium Denim Jeans, Crisp Shirts & Festive Kurtas</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-brandCard p-4 rounded border border-brandBorder flex flex-col justify-between shadow-sm">
-          <div class="space-y-3">
-            <div class="h-64 rounded bg-zinc-100 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Men's Jeans">
-            </div>
-            <div class="flex justify-between items-start">
-              <h4 class="font-serif text-brandDark text-base font-bold">Regular Fit Comfort Denim</h4>
-              <span class="text-[10px] bg-goldAccent/10 text-goldAccent font-bold px-2 py-0.5 rounded border border-goldAccent/20 uppercase tracking-widest">Jeans</span>
-            </div>
-            <p class="text-sm text-zinc-600 font-light">Rugged, deep-indigo premium denim jeans constructed in traditional regular fits.</p>
-          </div>
-          <button onclick="addToCart('Mens Regular Fit Denim', '1999', 'Mens Apparel')" class="mt-4 block w-full text-center py-2 bg-white hover:bg-brandDark text-zinc-800 hover:text-white border border-brandBorder transition text-[11px] font-bold uppercase tracking-wider rounded-sm">CURATE TO BAG</button>
-        </div>
-
-        <div class="bg-brandCard p-4 rounded border border-brandBorder flex flex-col justify-between shadow-sm">
-          <div class="space-y-3">
-            <div class="h-64 rounded bg-zinc-100 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover" alt="Men's Ethnic Wear">
-            </div>
-            <div class="flex justify-between items-start">
-              <h4 class="font-serif text-brandDark text-base font-bold">Handcrafted Wedding Kurta</h4>
-              <span class="text-[10px] bg-goldAccent/10 text-goldAccent font-bold px-2 py-0.5 rounded border border-goldAccent/20 uppercase tracking-widest">Ethnic Wear</span>
-            </div>
-            <p class="text-sm text-zinc-600 font-light">Intricately patterned artisan-woven festive kurtas styled meticulously for traditional luxury gatherings.</p>
-          </div>
-          <button onclick="addToCart('Handcrafted Wedding Kurta', '3999', 'Mens Apparel')" class="mt-4 block w-full text-center py-2 bg-white hover:bg-brandDark text-zinc-8
+            <div class="p-6 space-y-2">
+              <h3 class="text-xl font-serif text-brandDark font-bold tracking-wide">Kids & Footwear Counter</h3>
+              <p class="text-sm text-zinc-600 font-light">
